@@ -1,9 +1,47 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import "./globals.css";
-import { AppSidebar } from "@/components/dashboard/app-sidebar";
-import { IconNotification } from "@/components/ui/icon";
-import { UserNav } from "@/components/dashboard/user-nav";
-import { Search } from "@/components/dashboard/search";
+import { AppSidebar, SidebarItem } from "@/components/dashboard/app-sidebar";
+import { IconAnalytics, IconDashboard, IconMessage, IconPersonal, IconSetting, IconTransaction, IconWallet } from "@/components/ui/icon";
+import { AppHeader } from "@/components/dashboard/app-header";
+
+// Menu items.
+const defaultItems = [
+  {
+    title: "Dashboard",
+    url: "/",
+    icon: IconDashboard,
+  },
+  {
+    title: "Transactions",
+    url: "/transactions",
+    icon: IconTransaction,
+  },
+  {
+    title: "Wallet",
+    url: "/wallet",
+    icon: IconWallet,
+  },
+  {
+    title: "Analytics",
+    url: "/analytics",
+    icon: IconAnalytics,
+  },
+  {
+    title: "Personal",
+    url: "/personal",
+    icon: IconPersonal,
+  },
+  {
+    title: "Message",
+    url: "/message",
+    icon: IconMessage,
+  },
+  {
+    title: "Setting",
+    url: "/setting",
+    icon: IconSetting,
+  },
+] as SidebarItem[]
 
 export default async function RootLayout({
   children,
@@ -20,18 +58,9 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning={true}>
         <SidebarProvider>
-          <AppSidebar />
+          <AppSidebar items={defaultItems} />
           <div className="flex-1 overflow-hidden">
-            <div className="border-b bg-foreground">
-              <div className="flex h-19 items-center justify-between p-6">
-                <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
-                <div className="ml-auto flex items-center  space-x-4">
-                  <Search />
-                  <IconNotification />
-                  <UserNav />
-                </div>
-              </div>
-            </div>
+            <AppHeader items={defaultItems} />
             <main>{children}</main>
           </div>
         </SidebarProvider>

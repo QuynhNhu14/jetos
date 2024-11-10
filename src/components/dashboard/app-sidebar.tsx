@@ -10,56 +10,16 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { IconAnalytics, IconDashboard, IconMessage, IconPersonal, IconSetting, IconTransaction, IconWallet } from "../ui/icon";
 import { usePathname } from "next/navigation";
 
-type SidebarItem = {
+export type SidebarItem = {
   title: string
   url: string
   icon: React.FC<{ active?: boolean }>
   active?: boolean
 }
 
-// Menu items.
-const items = [
-  {
-    title: "Dashboard",
-    url: "/",
-    icon: IconDashboard,
-  },
-  {
-    title: "Transactions",
-    url: "/transactions",
-    icon: IconTransaction,
-  },
-  {
-    title: "Wallet",
-    url: "/wallet",
-    icon: IconWallet,
-  },
-  {
-    title: "Analytics",
-    url: "/analytics",
-    icon: IconAnalytics,
-  },
-  {
-    title: "Personal",
-    url: "/personal",
-    icon: IconPersonal,
-  },
-  {
-    title: "Message",
-    url: "/message",
-    icon: IconMessage,
-  },
-  {
-    title: "Setting",
-    url: "/setting",
-    icon: IconSetting,
-  },
-] as SidebarItem[]
-
-export function AppSidebar() {
+export function AppSidebar({items}: {items: SidebarItem[]}) {
   const pathname = usePathname()
   items.forEach((item) => {
     item.active = pathname === item.url

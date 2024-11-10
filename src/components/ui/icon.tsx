@@ -1,3 +1,4 @@
+"use client"
 export function IconDashboard({ active = false }: { active?: boolean }) {
   return (
     <svg
