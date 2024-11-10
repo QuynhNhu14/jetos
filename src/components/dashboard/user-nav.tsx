@@ -9,7 +9,7 @@ import { DropdownMenuShortcut } from "@/components/ui/dropdown-menu";
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-s-md">
             <Avatar className="h-8 w-8 rounded-s-md">
-              <AvatarImage src="./user.png" alt="@shadcn" />
+              <AvatarImage src="/user.png" alt="@shadcn" />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
           </Button>

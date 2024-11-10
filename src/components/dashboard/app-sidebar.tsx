@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import {
   Sidebar,
@@ -9,55 +10,61 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { IconAnalytics, IconDashboard, IconMessage, IconPersonal, IconSetting, IconTransaction, IconWallet } from "../ui/icon"
+import { IconAnalytics, IconDashboard, IconMessage, IconPersonal, IconSetting, IconTransaction, IconWallet } from "../ui/icon";
+import { usePathname } from "next/navigation";
+
+type SidebarItem = {
+  title: string
+  url: string
+  icon: React.FC<{ active?: boolean }>
+  active?: boolean
+}
 
 // Menu items.
 const items = [
   {
     title: "Dashboard",
-    url: "#",
+    url: "/",
     icon: IconDashboard,
-    active: true
   },
   {
     title: "Transactions",
-    url: "#",
+    url: "/transactions",
     icon: IconTransaction,
-    active: false
   },
   {
     title: "Wallet",
-    url: "#",
+    url: "/wallet",
     icon: IconWallet,
-    active: false
   },
   {
     title: "Analytics",
-    url: "#",
+    url: "/analytics",
     icon: IconAnalytics,
-    active: false
   },
   {
     title: "Personal",
-    url: "#",
+    url: "/personal",
     icon: IconPersonal,
-    active: false
   },
   {
     title: "Message",
-    url: "#",
+    url: "/message",
     icon: IconMessage,
-    active: false
   },
   {
     title: "Setting",
-    url: "#",
+    url: "/setting",
     icon: IconSetting,
-    active: false
   },
-]
+] as SidebarItem[]
 
 export function AppSidebar() {
+  const pathname = usePathname()
+  items.forEach((item) => {
+    item.active = pathname === item.url
+  });
+
   return (
     <Sidebar>
       <SidebarContent >
